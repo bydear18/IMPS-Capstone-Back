@@ -3,6 +3,8 @@ package com.imps.IMPS.repositories;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List; 
+import org.springframework.data.repository.query.Param;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +15,12 @@ import com.imps.IMPS.models.PrintingRecord;
 
 public interface PrintingRecordsRepository extends CrudRepository<PrintingRecord, Integer> {
 	
+    @Query("SELECT pr FROM PrintingRecord pr WHERE pr.requestDate = :requestDate")
+    List<PrintingRecord> findByRequestDate(@Param("requestDate") Date requestDate);
+	
+	@Query(value = "SELECT * FROM PRINTING_RECORD", nativeQuery = true)
+	Iterable<PrintingRecord> findAllRecords();
+
 	@Query(value = "SELECT * FROM PRINTING_RECORD WHERE STATUS = 'Pending'", nativeQuery = true)
 	Iterable<PrintingRecord> findPending();
 	

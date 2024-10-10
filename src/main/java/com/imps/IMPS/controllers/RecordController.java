@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import com.imps.IMPS.EmailService;
 import com.imps.IMPS.models.Notification;
 import com.imps.IMPS.models.PrintingRecord;
@@ -52,7 +52,12 @@ public class RecordController {
     public RecordController(EmailService emailService) {
     	this.emailService = emailService;
     }
-	
+	@GetMapping(path = "/requests/{date}")
+	public @ResponseBody List<PrintingRecord> getRequestsByDate(@PathVariable String date) {
+		Date requestDate = Date.valueOf(date); 
+		return recordRepository.findByRequestDate(requestDate); 
+	}
+
     @GetMapping(path = "/requestCounts")
     public @ResponseBody Map<String, Integer> getRequestCounts() {
         Map<String, Integer> counts = new HashMap<>();
@@ -65,7 +70,7 @@ public class RecordController {
 
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<PrintingRecord> getAllRecords() {
-        return recordRepository.findCurrent();
+        return recordRepository.findAllRecords();
     }
     
     @GetMapping(path = "/id")

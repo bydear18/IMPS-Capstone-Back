@@ -11,6 +11,7 @@ com\imps\IMPS\controllers\RequestController.class
 com\imps\IMPS\models\File.class
 com\imps\IMPS\EmailService.class
 com\imps\IMPS\models\Comment.class
+com\imps\IMPS\config\WebConfig.class
 com\imps\IMPS\controllers\CommentContoller.class
 com\imps\IMPS\repositories\CommentRepository.class
 com\imps\IMPS\controllers\RecordController.class
@@ -22,5 +23,7 @@ com\imps\IMPS\models\PrintingRecord.class
 com\imps\IMPS\controllers\NotificationController.class
 com\imps\IMPS\repositories\PrintingDetailsRepository.class
 com\imps\IMPS\models\RequestResponse.class
+com\imps\IMPS\repositories\UserReportRepository.class
+com\imps\IMPS\models\UserReport.class
 com\imps\IMPS\repositories\NotificationRepository.class
 com\imps\IMPS\ImpsApplication.class
