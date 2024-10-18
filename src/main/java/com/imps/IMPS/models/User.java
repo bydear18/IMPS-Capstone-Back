@@ -12,81 +12,61 @@ public class User {
     private Integer id;
     
     private String userID;
-
     private String firstName;
-    
     private String lastName;
-    
     private String password;
-
     private String email;
-    
     private String token;
-    
     private Boolean isAdmin;
-	private Boolean isHead;
-	private Boolean isStaff;
-	private String schoolId;
-	private String role; 
-	private Boolean adminVerified; 
-	
-	public Boolean getAdminVerified() {
-		return adminVerified;
-	}
+    private Boolean isHead;
+    private Boolean isStaff;
+    private String schoolId;
+    private String role; 
+    private Boolean adminVerified;
+    private String department;
+    private String college;  // New field for college
+    private String office;   // New field for office
 
-	public void setAdminVerified(Boolean adminVerified) {
-		this.adminVerified = adminVerified;
-	}
+    // Getters and Setters
 
-	private String department;
-
-	public Boolean getIsHead() {
-		return isHead;
-	}
-
-	public void setIsHead(Boolean isHead) {
-		this.isHead = isHead;
-	}
-
-	public Boolean getIsStaff() {
-		return isStaff;
-	}
-
-	public void setIsStaff(Boolean isStaff) {
-		this.isStaff = isStaff;
-	}
-
-    public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-
-    public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
-    
-    public String getPassword() {
-    	return password;
+
+    public String getUserID() {
+        return userID;
     }
-    
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
-    	this.password = password;
+        this.password = password;
     }
 
     public String getEmail() {
@@ -97,45 +77,37 @@ public class User {
         this.email = email;
     }
 
-	public String getToken() {
-		return token;
-	}
+    public String getToken() {
+        return token;
+    }
 
-	public void setToken(String token) {
-		this.token = token;
-	}
+    public void setToken(String token) {
+        this.token = token;
+    }
 
-	public String getUserID() {
-		return userID;
-	}
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
 
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
-	public Boolean getIsAdmin() {
-		return isAdmin;
-	}
+    public Boolean getIsHead() {
+        return isHead;
+    }
 
-	public void setIsAdmin(Boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
+    public void setIsHead(Boolean isHead) {
+        this.isHead = isHead;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public Boolean getIsStaff() {
+        return isStaff;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setIsStaff(Boolean isStaff) {
+        this.isStaff = isStaff;
+    }
 
     public String getSchoolId() {
         return schoolId;
@@ -143,5 +115,45 @@ public class User {
 
     public void setSchoolId(String schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getAdminVerified() {
+        return adminVerified;
+    }
+
+    public void setAdminVerified(Boolean adminVerified) {
+        this.adminVerified = adminVerified;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getOffice() {
+        return office;
+    }
+
+    public void setOffice(String office) {
+        this.office = office;
     }
 }
