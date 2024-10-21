@@ -123,7 +123,72 @@ public class UserController {
         }
     }
 
-    
+
+@PostMapping(path = "/NewStaffRegistration")
+    public @ResponseBody UserResponse addNewStaff(
+            @RequestParam String firstName, 
+            @RequestParam String lastName,
+            @RequestParam String password, 
+            @RequestParam String email,  
+            @RequestParam String schoolId,
+            @RequestParam String role 
+    ) {
+        if (!schoolId.matches("\\d{2}-\\d{4}-\\d{3}")) {
+            return new UserResponse(false, "Invalid School ID format!", null, null);
+        }
+
+        try {
+            String token = UUID.randomUUID().toString().replaceAll("-", "");
+
+            if(userRepository.findByEmail(email) != null) {
+                return new UserResponse(false, "User email already exists!", null, null);
+            } else {
+                List<User> created = new ArrayList<>();
+                List<UserReport> createdReport = new ArrayList<>();
+
+                String month;
+                String userNumber;
+
+                month = String.format("%02d", LocalDate.now().getMonthValue());
+                int userCount = userRepository.getAll().size();
+
+                if (userCount < 10) {
+                    userNumber = "00" + (userCount + 1);
+                } else if (userCount < 100) {
+                    userNumber = "0" + (userCount + 1);
+                } else {
+                    userNumber = Integer.toString(userCount + 1);
+                }
+
+                String userID = LocalDate.now().getYear() + month + userNumber;
+
+                User IMPSUser = new User();
+                IMPSUser.setFirstName(firstName);
+                IMPSUser.setLastName(lastName);
+                IMPSUser.setEmail(email);
+                IMPSUser.setPassword(encoder.encode(password));
+                IMPSUser.setToken(token);
+                IMPSUser.setUserID(userID);
+                IMPSUser.setSchoolId(schoolId);
+                IMPSUser.setRole(role);
+                IMPSUser.setAdminVerified(true);
+                created.add(IMPSUser);
+                userRepository.save(IMPSUser);
+
+                UserReport IMPSReport = new UserReport();
+                IMPSReport.setRole(role);
+                IMPSReport.setStatus("Accepted");
+                IMPSReport.setEmail(email);
+                createdReport.add(IMPSReport);
+                userReportRepository.save(IMPSReport);
+
+                return new UserResponse(true, "User created successfully", null, created);
+            }
+        } catch(Exception e) {
+            return new UserResponse(false, "Unable to create new user.", null, null);
+        }
+    }
+
     @PostMapping(path = "/createDefaultUsers")
     public @ResponseBody String createDefaultUsers(@RequestBody Map<String, String> request) {
         String adminEmail = request.get("adminEmail");
